@@ -2,9 +2,12 @@ CC = g++
 CFLAGS = -Wall -Wextra -std=c++11
 LDFLAGS =
 
-all: main
+all: bin main
 
-main: main.o X.o Sudoku.o
+bin:
+	@mkdir -p bin
+
+main: bin main.o X.o Sudoku.o
 	$(CC) $(LDFLAGS) -o bin/main main.o X.o Sudoku.o
 
 main.o: main.cpp X.h Sudoku.h
@@ -17,7 +20,7 @@ Sudoku.o: Sudoku.cpp Sudoku.h
 	$(CC) $(CFLAGS) -c Sudoku.cpp
 
 clean:
-	rm -f bin/*.o bin/main ./*.o
+	rm -f bin/*.o bin/main
 
 run: all
 	./bin/main
@@ -25,7 +28,7 @@ run: all
 valgrind: all
 	valgrind --leak-check=full ./bin/main
 
-	debug: CFLAGS += $(DEBUGFLAGS)
+debug: CFLAGS += $(DEBUGFLAGS)
 debug: clean all
 
 # Run the program with gdb

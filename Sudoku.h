@@ -28,6 +28,9 @@ public:
     // the clue is the number at grid[i][j]
     void addClue(int i, int j, int clue, vector<vector<int>> &binaryMatrix);
 
+    // Function that will translate the exact cover problem solution to a Sudoku solution
+    void SolvePuzzle(vector<int>&rowIDs,vector<int>& values);
+
 private:
     // Function to add cell constraints to the binary matrix
     void addCellConstraint(vector<vector<int>> &binaryMatrix);

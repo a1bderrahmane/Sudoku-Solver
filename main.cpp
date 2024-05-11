@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "Sudoku.h"
 #include "X.h"
 #define MAX_ROW 729
@@ -54,7 +55,7 @@ int main()
 
     std::vector<std::vector<int>> binaryMatrix(BINARY_ROWS, std::vector<int>(BINARY_COLUMNS, 0));
     vector<int> head{};
-    for (int i = 0; i < binaryMatrix[0].size(); i++)
+    for (size_t i = 0; i < binaryMatrix[0].size(); i++)
     {
         head.push_back(1);
     }
@@ -88,7 +89,14 @@ int main()
     // printBinaryMatrix(binaryMatrix);
     algoX.createGrid(binaryMatrix, Matrix);
 
-    algoX.search(0, Solution);
+    ofstream outFile("Solution.txt");  // Create an output file stream
+
+    if (!outFile.is_open()) {
+        cerr << "Failed to open the file." << endl;
+    }
+    algoX.search(0, Solution,outFile);
+    outFile.close();  // Close the file
+    
     // // We need to liberate all the memory cases we have allocated during the whole process
     // // create 4-way linked matrix
     for (int i = 0; i <= nRow; i++)

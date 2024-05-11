@@ -177,30 +177,49 @@ void X::uncover(Node *target)
 }
 
 // Function to print the solution
-void X::printSolution(vector<struct Node *> &Solution)
+void X::printSolution(vector<struct Node *> &Solution,ofstream & outFile)
 {
-    ofstream outFile("Solution.txt");  // Create an output file stream
+    
 
-    if (!outFile.is_open()) {
-        cerr << "Failed to open the file." << endl;
-        return;
-    }
-
-    outFile << "Solution to the problem: " <<endl;
+    outFile << "Solution to the exact cover problem ( rows of the binary matrix): " <<endl;
     int idx = 0;
     int length = Solution.size();
-    
+    vector<int> values;
     for (auto &it : Solution)
     {
-        outFile << it->rowId;
+        values.push_back(it->rowId);
+        outFile << (it->rowId);
         if (idx != length - 1)
-            outFile << " U "; // "U" is used to separate values
+            outFile << " , "; // "U" is used to separate values
         else
             outFile <<endl;
         idx++;
     }
-
-    outFile.close();  // Close the file
+    sort(values.begin(),values.end());
+    for(auto& val:values)
+    {
+        val=val%9+1;
+    }
+    outFile<<endl;
+    outFile<<endl;
+    // Reshape the vector into a 9x9 grid
+    vector<vector<int>> grid(9, vector<int>(9));
+    for (int i = 0; i < 9; ++i) {
+        for (int j = 0; j < 9; ++j) {
+            grid[i][j] = values[i * 9 + j];
+        }
+    }
+    outFile<<"Sudoku Solution:"<<endl<<endl;
+    // Print the grid
+    for (int i = 0; i < 9; ++i) {
+        for (int j = 0; j < 9; ++j) {
+            outFile << grid[i][j] << " ";
+        }
+        outFile << endl;
+    }
+    outFile << endl;
+    outFile << endl;
+    
 }
 
 // Function to find the column containing the least number of nodes
@@ -232,14 +251,14 @@ Node *X::getMinColumn()
 }
 
 // the Principal function
-void X::search(int k, vector<struct Node *> &Solution)
+void X::search(int k, vector<struct Node *> &Solution,ofstream & outFile)
 {
     // cout<<"k ="<<k<<endl;
     // If there are no more new elements to explore
     // we print the current solution
     if ((header->right) == header)
     {
-        printSolution(Solution);
+        printSolution(Solution,outFile);
         return;
     }
     // We determinastically select the column with the least number of nodes
@@ -259,7 +278,7 @@ void X::search(int k, vector<struct Node *> &Solution)
             j = j->right;
         }
         // recursively do the same thing
-        search(k + 1, Solution);
+        search(k + 1, Solution,outFile);
         // If no solution is found
         // We do the backtracking
         r = Solution.back();
@@ -281,4 +300,6 @@ X::~X()
     // We free the memory allocted previously to header
     delete header;
 }
+
+
 

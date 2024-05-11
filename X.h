@@ -2,6 +2,7 @@
 #define X_H
 #include <iostream>
 #include <algorithm>
+#include<vector>
 #include <array>
 #include <fstream>
 #include "Sudoku.h"
@@ -32,7 +33,7 @@ public:
     struct Node *header;
     X();
     Node *createGrid(vector<vector<int>>& problemMAtrix, Node *(&Matrix)[MAX_ROW + 1][MAX_COL ]);
-    void search(int k, vector<struct Node *> &Solution);
+    void search(int k, vector<struct Node *> &Solution,ofstream & outFile);
     ~X();
     void setRowsColumns(int row, int column);
 
@@ -42,7 +43,7 @@ private:
 
     void cover(Node *target);
     void uncover(Node *target);
-    void printSolution(vector<struct Node *> &Solution);
+    void printSolution(vector<struct Node *> &Solution,ofstream & outFile);
     Node *getMinColumn();
     int getUp(int i);
     int getDown(int i);

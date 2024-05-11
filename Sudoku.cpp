@@ -5,46 +5,6 @@ Sudoku::Sudoku() {}
 
 Sudoku::~Sudoku(){};
 
-void Sudoku::print(vector<vector<int>> &grid) const
-{
-    for (const auto &row : grid)
-    {
-        // Print horizontal lines for 3x3 blocks
-        if (&row == grid.data())
-        {
-            std::cout << "╔═══╤═══╤═══╦═══╤═══╤═══╦═══╤═══╤═══╗" << std::endl;
-        }
-        else if ((&row - 1)->size() == 9)
-        {
-            std::cout << "╟───┼───┼───╫───┼───┼───╫───┼───┼───╢" << std::endl;
-        }
-        else if (row.size() == 0)
-        {
-            std::cout << "╚═══╧═══╧═══╩═══╧═══╧═══╩═══╧═══╧═══╝" << std::endl;
-        }
-
-        // Print the row values
-        for (size_t col = 0; col < row.size(); ++col)
-        {
-            if (col % 3 == 0)
-            {
-                std::cout << "║ "; // Start of a new column block
-            }
-            std::cout << row[col] << ' ';
-            if (col % 3 == 2 && col != row.size() - 1)
-            {
-                std::cout << "║ "; // End of a column block
-            }
-        }
-        std::cout << "║" << std::endl;
-
-        // Print vertical lines for 3x3 blocks
-        if ((&row - 1)->size() == 9 && row.size() == 9)
-        {
-            std::cout << "╠═══╪═══╪═══╬═══╪═══╪═══╬═══╪═══╪═══╣" << std::endl;
-        }
-    }
-}
 
 void Sudoku::constructBinaryMatrix(vector<vector<int>> &binaryMatrix)
 {
@@ -74,7 +34,6 @@ void Sudoku::addCellConstraint(vector<vector<int>> &binaryMatrix)
             ligne += SIZE;
         }
     }
-    cout << c << endl;
 }
 
 void Sudoku::addRowConstraint(vector<vector<int>> &binaryMatrix)
@@ -249,5 +208,15 @@ void Sudoku::changeBlockConstraint(int i, int j, int clue, vector<vector<int>> &
                 }
             }
         }
+    }
+}
+
+void Sudoku::SolvePuzzle(vector<int> &rowIDs, vector<int> &values)
+{
+    int val = 0;
+    for (auto &row : rowIDs)
+    {
+        val = (row) % 9;
+        values.push_back(val);
     }
 }

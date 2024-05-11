@@ -11,7 +11,6 @@ This C++ program employs the Dancing Links algorithm, originally devised by Dona
 To compile and run the Sudoku Solver, follow these instructions:
 
 ### Prerequisites
-- A C++ compiler that supports C++17 or later.
 - GNU Make.
 - GDB for debugging (optional).
 - Valgrind for memory leak detection (optional).

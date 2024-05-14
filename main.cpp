@@ -8,7 +8,8 @@
 #define SIZE 9
 using namespace std;
 
-void printBinaryMatrix(std::vector<std::vector<int>> &binaryMatrix)
+// Function that would help visualize the binary matrix format
+void printBinaryMatrix(vector<vector<int>> &binaryMatrix)
 {
     for (const auto &row : binaryMatrix)
     {
@@ -17,15 +18,15 @@ void printBinaryMatrix(std::vector<std::vector<int>> &binaryMatrix)
             if (row[col] == 1)
             {
                 // Print in bold green
-                std::cout << "\033[1;32m" << row[col] << "\033[0m";
+                cout << "\033[1;32m" << row[col] << "\033[0m";
             }
             else
             {
                 // Print in default terminal color
-                std::cout << row[col];
+                cout << row[col];
             }
         }
-        std::cout << std::endl;
+        cout << endl;
     }
 }
 
@@ -51,9 +52,9 @@ int main()
 
     Sudoku Solver = Sudoku();
 
-    std::vector<std::vector<int>> grid(SIZE, std::vector<int>(SIZE, 0));
+    vector<vector<int>> grid(SIZE, vector<int>(SIZE, 0));
 
-    std::vector<std::vector<int>> binaryMatrix(BINARY_ROWS, std::vector<int>(BINARY_COLUMNS, 0));
+    vector<vector<int>> binaryMatrix(BINARY_ROWS, vector<int>(BINARY_COLUMNS, 0));
     vector<int> head{};
     for (size_t i = 0; i < binaryMatrix[0].size(); i++)
     {
@@ -61,12 +62,12 @@ int main()
     }
 
     Solver.constructBinaryMatrix(binaryMatrix);
+    // Example of Sudoku clues
+    
     Solver.addClue(0, 0, 1, binaryMatrix);
     Solver.addClue(0, 2, 7, binaryMatrix);
     Solver.addClue(0, 5, 6, binaryMatrix);
     Solver.addClue(0, 6, 4, binaryMatrix);
-
-    // Solver.addClue(3, 7, 5, binaryMatrix);
     Solver.addClue(1, 1, 2, binaryMatrix);
     Solver.addClue(1, 2, 5, binaryMatrix);
     Solver.addClue(1, 8, 8, binaryMatrix);

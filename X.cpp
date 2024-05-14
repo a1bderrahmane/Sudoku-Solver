@@ -98,6 +98,7 @@ Node *X::createGrid(vector<vector<int>>& problemMatrix, Node *(&Matrix)[MAX_ROW 
                 Matrix[i][j]->down = Matrix[a][j];
             }
         }
+
     }
 
     // Set the header's right pointer to the first node in the grid
@@ -198,7 +199,11 @@ void X::printSolution(vector<struct Node *> &Solution,ofstream & outFile)
     sort(values.begin(),values.end());
     for(auto& val:values)
     {
-        val=val%9+1;
+        val=val%9;
+        if (val==0)
+        {
+            val=9;
+        }
     }
     outFile<<endl;
     outFile<<endl;

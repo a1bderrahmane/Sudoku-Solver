@@ -211,12 +211,12 @@ void Sudoku::changeBlockConstraint(int i, int j, int clue, vector<vector<int>> &
     }
 }
 
-void Sudoku::SolvePuzzle(vector<int> &rowIDs, vector<int> &values)
-{
-    int val = 0;
-    for (auto &row : rowIDs)
-    {
-        val = (row) % 9;
-        values.push_back(val);
-    }
-}
+// void Sudoku::SolvePuzzle(vector<int> &rowIDs, vector<int> &values)
+// {
+//     int val = 0;
+//     for (auto &row : rowIDs)
+//     {
+//         val = (row) % 9;
+//         values.push_back(val);
+//     }
+// }

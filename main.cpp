@@ -12,7 +12,7 @@ void printBinaryMatrix(std::vector<std::vector<int>> &binaryMatrix)
 {
     for (const auto &row : binaryMatrix)
     {
-        for (size_t col =0; col < binaryMatrix[0].size(); ++col)
+        for (size_t col = 0; col < binaryMatrix[0].size(); ++col)
         {
             if (row[col] == 1)
             {
@@ -22,7 +22,7 @@ void printBinaryMatrix(std::vector<std::vector<int>> &binaryMatrix)
             else
             {
                 // Print in default terminal color
-                std::cout << row[col] ;
+                std::cout << row[col];
             }
         }
         std::cout << std::endl;
@@ -33,7 +33,7 @@ int main()
 {
 
     // the matrix of the Nodes
-    Node *Matrix[MAX_ROW + 1][MAX_COL ];
+    Node *Matrix[MAX_ROW + 1][MAX_COL];
 
     vector<struct Node *> Solution;
 
@@ -59,44 +59,53 @@ int main()
     {
         head.push_back(1);
     }
-   
 
     Solver.constructBinaryMatrix(binaryMatrix);
-    Solver.addClue(0, 3, 6, binaryMatrix);
-    Solver.addClue(1, 8, 2, binaryMatrix);
+    Solver.addClue(0, 0, 1, binaryMatrix);
+    Solver.addClue(0, 2, 7, binaryMatrix);
+    Solver.addClue(0, 5, 6, binaryMatrix);
+    Solver.addClue(0, 6, 4, binaryMatrix);
+
+    // Solver.addClue(3, 7, 5, binaryMatrix);
+    Solver.addClue(1, 1, 2, binaryMatrix);
+    Solver.addClue(1, 2, 5, binaryMatrix);
+    Solver.addClue(1, 8, 8, binaryMatrix);
+    Solver.addClue(2, 1, 6, binaryMatrix);
     Solver.addClue(2, 5, 1, binaryMatrix);
-    Solver.addClue(2, 8, 9, binaryMatrix);
-    Solver.addClue(3, 6, 4, binaryMatrix);
-    Solver.addClue(4, 0, 5, binaryMatrix);
-    Solver.addClue(4, 3, 1, binaryMatrix);
-    Solver.addClue(4, 8, 3, binaryMatrix);
-    Solver.addClue(6, 1, 4, binaryMatrix);
-    Solver.addClue(6, 8, 7, binaryMatrix);
-    Solver.addClue(7, 0, 6, binaryMatrix);
-    Solver.addClue(8, 7, 5, binaryMatrix);
-    Solver.addClue(0, 2, 3, binaryMatrix);
-    Solver.addClue(0, 4, 8, binaryMatrix);
-    Solver.addClue(1, 3, 4, binaryMatrix);
-    Solver.addClue(2, 6, 5, binaryMatrix);
-    Solver.addClue(3, 2, 1, binaryMatrix);
+    Solver.addClue(2, 7, 7, binaryMatrix);
+    Solver.addClue(3, 1, 5, binaryMatrix);
+    Solver.addClue(3, 2, 3, binaryMatrix);
+    Solver.addClue(3, 7, 2, binaryMatrix);
+    Solver.addClue(3, 8, 9, binaryMatrix);
+    Solver.addClue(4, 0, 6, binaryMatrix);
+    Solver.addClue(4, 1, 1, binaryMatrix);
     Solver.addClue(4, 5, 9, binaryMatrix);
-    Solver.addClue(5, 0, 7, binaryMatrix);
-    Solver.addClue(5, 8, 8, binaryMatrix);
-    Solver.addClue(6, 4, 2, binaryMatrix);
-    Solver.addClue(7, 5, 3, binaryMatrix);
-    Solver.addClue(8, 1, 9, binaryMatrix);
+    Solver.addClue(4, 6, 8, binaryMatrix);
+    Solver.addClue(5, 3, 6, binaryMatrix);
+    Solver.addClue(5, 5, 2, binaryMatrix);
+    Solver.addClue(5, 8, 7, binaryMatrix);
+    Solver.addClue(6, 2, 1, binaryMatrix);
+    Solver.addClue(6, 4, 9, binaryMatrix);
+    Solver.addClue(6, 5, 3, binaryMatrix);
+    Solver.addClue(6, 6, 2, binaryMatrix);
+    Solver.addClue(7, 2, 8, binaryMatrix);
+    Solver.addClue(8, 1, 4, binaryMatrix);
+    Solver.addClue(8, 4, 7, binaryMatrix);
+    Solver.addClue(8, 5, 8, binaryMatrix);
+    Solver.addClue(8, 6, 5, binaryMatrix);
+    Solver.addClue(8, 7, 9, binaryMatrix);
+    Solver.addClue(8, 8, 1, binaryMatrix);
+
     binaryMatrix.insert(binaryMatrix.begin(), head);
-    // printBinaryMatrix(binaryMatrix);
     algoX.createGrid(binaryMatrix, Matrix);
-
-    ofstream outFile("Solution.txt");  // Create an output file stream
-
-    if (!outFile.is_open()) {
+    ofstream outFile("Solution.txt"); // Create an output file stream
+    if (!outFile.is_open())
+    {
         cerr << "Failed to open the file." << endl;
     }
-    algoX.search(0, Solution,outFile);
-    outFile.close();  // Close the file
-    
+    algoX.search(0, Solution, outFile);
+    outFile.close(); // Close the file
+
     // // We need to liberate all the memory cases we have allocated during the whole process
     // // create 4-way linked matrix
     for (int i = 0; i <= nRow; i++)

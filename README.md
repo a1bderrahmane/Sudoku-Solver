@@ -43,3 +43,9 @@ To check for memory leaks with Valgrind:
 ```bash
 make valgrind
 ```
+
+## Testing
+The program is tested on the following Sudoku puzzle:
+![Sudoku Puzzle](exampleSudoku.jpg)
+
+The output of the program is printed in the `Solution.txt` file.

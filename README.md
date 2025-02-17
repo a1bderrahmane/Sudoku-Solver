@@ -1,7 +1,7 @@
 # Sudoku Solver
 
 ## Overview
-This C++ program employs the Dancing Links algorithm, originally devised by Donald Knuth, to solve 9x9 Sudoku puzzles. It efficiently explores all possible solutions and outputs them into a file named `Solution.txt`.
+This C++ program employs the Dancing Links algorithm, originally devised by Donald Knuth, to solve nxn Sudoku puzzles. It efficiently explores all possible solutions and outputs them into a file named `Solution.txt`.
 
 ## Dancing Links Algorithm
 
